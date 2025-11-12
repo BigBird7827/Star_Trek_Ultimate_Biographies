@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Star Trek - Ultimate Biographies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --dark-blue: #061229;
+        --gold: #ffd700;
+        --ink: #e6e9ef;
+        --gap: 16px;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0 auto;
+        background: var(--dark-blue);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+        display: flex;
+        min-height: 100%;
+      }
+      .page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        width: 100%;
+      }
+      header,
+      main,
+      footer {
+        padding: 24px clamp(16px, 3vw, 48px);
+      }
+      h1{margin:0;text-align:center;font-family:"Orbitron",system-ui,sans-serif;font-weight:800;font-size:56pt;line-height:1;background:linear-gradient(180deg,#f7f9fb 0%,#dfe3e8 25%,#b7bcc3 50%,#eff1f4 60%,#8d9299 75%,#f7f9fb 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px #000;}
+      main {
+        flex: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      .view {
+        display: none;
+        width: 100%;
+      }
+      .view.active {
+        display: block;
+      }
+      #menu.view.active {
+        min-height: calc(100vh - 240px);
+        display: grid;
+        place-items: center;
+      }
+      .nav {
+        width: min(1100px, 100%);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+        justify-content: center;
+        align-items: center;
+      }
+      .nav .btn {
+        flex: 1 1 240px;
+        max-width: 260px;
+      }
+      @media (max-width: 899px) {
+        .nav .btn {
+          flex-basis: 280px;
+          max-width: 320px;
+        }
+      }
+      a.btn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 84px;
+        border-radius: 16px;
+        text-decoration: none;
+        color: var(--gold);
+        
+        font-family: "Orbitron", system-ui, sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.045em;
+        background: linear-gradient(to top, #003a6b 0%, #0c243d 100%);
+        border: 2px solid rgba(255, 215, 0, 0.9);
+        box-shadow:
+          0 14px 24px rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 rgba(12, 36, 61, 0.3),
+          inset 0 -6px 12px rgba(0, 0, 0, 0.35);
+        overflow: hidden;
+        transition: transform 0.08s ease, box-shadow 0.12s ease, filter 0.12s ease;
+      }
+      a.btn::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 56% 0;
+        background: linear-gradient(180deg, rgba(12, 36, 61, 0.2) 0%, rgba(12, 36, 61, 0.08) 100%);
+        pointer-events: none;
+      }
+      a.btn::after {
+        content: "";
+        position: absolute;
+        top: -18%;
+        left: -10%;
+        width: 120%;
+        height: 56%;
+        background: radial-gradient(120% 120% at 50% 0%, rgba(12, 36, 61, 0.24) 0%, rgba(12, 36, 61, 0.08) 60%, rgba(12, 36, 61, 0) 100%);
+        pointer-events: none;
+      }
+      a.btn:focus-visible,
+      a.btn:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          0 18px 32px rgba(0, 0, 0, 0.55),
+          inset 0 1px 0 rgba(12, 36, 61, 0.28),
+          inset 0 -8px 14px rgba(0, 0, 0, 0.4);
+        filter: brightness(1.03);
+        outline: none;
+      }
+      a.btn:active {
+        transform: translateY(1px);
+        box-shadow:
+          0 10px 18px rgba(0, 0, 0, 0.45),
+          inset 0 1px 0 rgba(12, 36, 61, 0.2),
+          inset 0 -4px 10px rgba(0, 0, 0, 0.45);
+      }
+      .topbar {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 16px;
+      }
+      .topbar a {
+        color: var(--ink);
+        text-decoration: none;
+        border: 1px solid rgba(255, 215, 0, 0.4);
+        padding: 6px 10px;
+        border-radius: 10px;
+        font-family: "Orbitron", system-ui, sans-serif;
+        font-size: 14px;
+      }
+      .subtitle {
+        margin: 8px auto 0;
+        text-align: center;
+        font-family: "Orbitron", system-ui, sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #ffffff;
+        font-size: clamp(18px, 2.8vw, 28px);
+      }
+      .gallery {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        gap: var(--gap);
+        margin-top: 30px;
+        padding: 0 30px;
+        width: 100%;
+        box-sizing: border-box;
+        flex-wrap: wrap;
+      }
+      .card {
+        width: calc((100% - (5 * var(--gap))) / 6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 215, 0, 0.35);
+        border-radius: 12px;
+        box-shadow:
+          0 8px 24px rgba(0, 0, 0, 0.45),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        overflow: hidden;
+      }
+      .media {
+        width: 100%;
+        aspect-ratio: 350 / 500;
+        display: grid;
+        place-items: center;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.25);
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.25);
+      }
+      .media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      .ph {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.6;
+      }
+      .meta {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 10px 8px 14px;
+      }
+      .meta .line {
+        font-size: 14px;
+        line-height: 1.2;
+        color: var(--ink);
+      }
+      .meta .name {
+        font-weight: 700;
+      }
+      .meta .role {
+        color: rgba(255, 215, 0, 0.9);
+      }
+      .meta .actor {
+        opacity: 0.9;
+      }
+      footer {
+        margin-top: auto;
+        text-align: center;
+        color: rgba(230, 233, 239, 0.9);
+        font-size: 14px;
+      }
+      @media (max-width: 1200px) {
+        .card {
+          width: calc((100% - (3 * var(--gap))) / 4);
+        }
+      }
+      @media (max-width: 900px) {
+        .card {
+          width: calc((100% - (2 * var(--gap))) / 3);
+        }
+      }
+      @media (max-width: 640px) {
+        .card {
+          width: calc((100% - (1 * var(--gap))) / 2);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>Star Trek - Ultimate Biographies</h1>
+      </header>
+
+      <main>
+        <section id="menu" class="view active">
+          <nav class="nav">
+            <a class="btn" href="#tos">Star Trek – TOS</a>
+            <a class="btn" href="#tng">Star Trek – TNG</a>
+            <a class="btn" href="#ds9">Star Trek – DS9</a>
+            <a class="btn" href="#voyager">Star Trek – Voyager</a>
+            <a class="btn" href="#enterprise">Star Trek – Enterprise</a>
+            <a class="btn" href="#lower-decks">Star Trek – Lower Decks</a>
+            <a class="btn" href="#prodigy">Star Trek – Prodigy</a>
+            <a class="btn" href="#tas">Star Trek – TAS</a>
+            <a class="btn" href="#picard">Star Trek – Picard</a>
+            <a class="btn" href="#discovery">Star Trek – Discovery</a>
+          </nav>
+        </section>
+
+        <section id="tos" class="view">
+          <div class="topbar">
+            <a href="#menu">Back to Series Menu</a>
+          </div>
+          <h2 class="subtitle">Star Trek – TOS</h2>
+          <div id="gallery-tos" class="gallery"></div>
+        </section>
+
+        <section id="tng" class="view">
+          <div class="topbar">
+            <a href="#menu">Back to Series Menu</a>
+          </div>
+          <h2 class="subtitle">Star Trek – TNG</h2>
+          <div id="gallery-tng" class="gallery"></div>
+        </section>
+
+        <section id="ds9" class="view">
+          <div class="topbar">
+            <a href="#menu">Back to Series Menu</a>
+          </div>
+          <h2 class="subtitle">Star Trek – DS9</h2>
+          <div id="gallery-ds9" class="gallery"></div>
+        </section>
+
+        <section id="voyager" class="view">
+          <div class="topbar">
+            <a href="#menu">Back to Series Menu</a>
+          </div>
+          <h2 class="subtitle">Star Trek – Voyager</h2>
+          <div id="gallery-voyager" class="gallery"></div>
+        </section>
+
+        <section id="enterprise" class="view">
+          <div class="topbar">
+            <a href="#menu">Back to Series Menu</a>
+          </div>
+          <h2 class="subtitle">Star Trek – Enterprise</h2>
+          <div id="gallery-enterprise" class="gallery"></div>
+        </section>
+
+        <section id="lower-decks" class="view">
+          <div class="topbar">
+            <a href="#menu">Back to Series Menu</a>
+          </div>
+          <h2 class="subtitle">Star Trek – Lower Decks</h2>
+          <div id="gallery-lower-decks" class="gallery"></div>
+        </section>
+
+        <section id="prodigy" class="view">
+          <div class="topbar">
+            <a href="#menu">Back to Series Menu</a>
+          </div>
+          <h2 class="subtitle">Star Trek – Prodigy</h2>
+          <div id="gallery-prodigy" class="gallery"></div>
+        </section>
+
+        <section id="tas" class="view">
+          <div class="topbar">
+            <a href="#menu">Back to Series Menu</a>
+          </div>
+          <h2 class="subtitle">Star Trek – TAS</h2>
+          <div id="gallery-tas" class="gallery"></div>
+        </section>
+
+        <section id="picard" class="view">
+          <div class="topbar">
+            <a href="#menu">Back to Series Menu</a>
+          </div>
+          <h2 class="subtitle">Star Trek – Picard</h2>
+          <div id="gallery-picard" class="gallery"></div>
+        </section>
+
+        <section id="discovery" class="view">
+          <div class="topbar">
+            <a href="#menu">Back to Series Menu</a>
+          </div>
+          <h2 class="subtitle">Star Trek – Discovery</h2>
+          <div id="gallery-discovery" class="gallery"></div>
+        </section>
+      </main>
+
+      <footer>© 2025 Star Trek Fan Art</footer>
+    </div>
+
+    <script>
+      const VIEWS = [
+        "menu",
+        "tos",
+        "tng",
+        "ds9",
+        "voyager",
+        "enterprise",
+        "lower-decks",
+        "prodigy",
+        "tas",
+        "picard",
+        "discovery"
+      ];
+
+      function showView(id) {
+        VIEWS.forEach((v) => {
+          const el = document.getElementById(v);
+          if (el) el.classList.toggle("active", v === id);
+        });
+      }
+
+      function handleHash() {
+        const id = location.hash.replace("#", "") || "menu";
+        if (VIEWS.includes(id)) {
+          showView(id);
+        } else {
+          showView("menu");
+        }
+      }
+
+      window.addEventListener("hashchange", handleHash);
+      window.addEventListener("DOMContentLoaded", handleHash);
+
+      const IMG_URLS_TOS = {
+        "James T. Kirk": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/James%20T%20Kirk.png",
+        "Spock": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Spock.png",
+        "Doctor McCoy": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Doctor%20McCoy.png",
+        "Scotty": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Scotty.png",
+        "Sulu": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Sulu.png",
+        "Chekov": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Chekov.png",
+        "Uhura": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Uhura.png",
+        "Nurse Chapel": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Nurse%20Chapel.png",
+        "Yeoman Rand": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Yeoman%20Rand.png",
+        "Gary Seven": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Gary%20Seven.png",
+        "Sarek": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Sarek.png",
+        "Khan Noonien Singh": "",
+        "Harry Mudd": "",
+        "Commodore Matt Decker": "",
+        "Edith Keeler": ""
+      };
+
+      const ORDER_TOS = [
+        "James T. Kirk",
+        "Spock",
+        "Doctor McCoy",
+        "Scotty",
+        "Chekov",
+        "Uhura",
+        "Nurse Chapel",
+        "Yeoman Rand",
+        "Gary Seven",
+        "Sarek",
+        "Khan Noonien Singh",
+        "Harry Mudd",
+        "Commodore Matt Decker",
+        "Edith Keeler"
+      ];
+
+      function metaBlock(lines) {
+        const meta = document.createElement("div");
+        meta.className = "meta";
+        const [name, role, actor] = lines;
+        const l1 = document.createElement("div");
+        l1.className = "line name";
+        l1.textContent = name;
+        const l2 = document.createElement("div");
+        l2.className = "line role";
+        l2.textContent = role;
+        const l3 = document.createElement("div");
+        l3.className = "line actor";
+        l3.textContent = actor;
+        meta.appendChild(l1);
+        meta.appendChild(l2);
+        meta.appendChild(l3);
+        return meta;
+      }
+
+      function placeholderCards(target, count = 6) {
+        for (let i = 0; i < count; i++) {
+          const c = document.createElement("div");
+          c.className = "card";
+          const p = document.createElement("div");
+          p.className = "media";
+          const ph = document.createElement("div");
+          ph.className = "ph";
+          p.appendChild(ph);
+          c.appendChild(p);
+          target.appendChild(c);
+        }
+      }
+
+      function buildTOS() {
+        const gallery = document.getElementById("gallery-tos");
+        if (!gallery || gallery.dataset.ready === "1") return;
+        ORDER_TOS.forEach((key) => {
+          const src = IMG_URLS_TOS[key];
+          const card = document.createElement("div");
+          card.className = "card";
+          const media = document.createElement("div");
+          media.className = "media";
+          if (src) {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = "";
+            media.appendChild(img);
+          } else {
+            const ph = document.createElement("div");
+            ph.className = "ph";
+            media.appendChild(ph);
+          }
+          card.appendChild(media);
+          if (key === "James T. Kirk") {
+            card.appendChild(metaBlock(["James T. Kirk", "Captain Kirk", "William Shatner"]));
+          }
+          if (key === "Spock") {
+            card.appendChild(metaBlock(["Spock", "Spock", "Leonard Nimoy"]));
+          }
+          if (key === "Doctor McCoy") {
+            card.appendChild(metaBlock(["Leonard McCoy", "Dr. (Bones) McCoy", "DeForest Kelley"]));
+          }
+          if (key === "Scotty") {
+            card.appendChild(metaBlock(["Montgomery Scott", "Scotty", "James Doohan"]));
+          }
+          if (key === "Chekov") {
+            card.appendChild(metaBlock(["Chekov", "Pavel Chekov", "Walter Koenig"]));
+          }
+          if (key === "Uhura") {
+            card.appendChild(metaBlock(["Uhura", "Lt. Uhura", "Nichelle Nichols"]));
+          }
+          if (key === "Nurse Chapel") {
+            card.appendChild(metaBlock(["Christine Chapel", "Nurse Chapel", "Majel Barrett"]));
+          }
+          if (key === "Yeoman Rand") {
+            card.appendChild(metaBlock(["Janice Rand", "Yeoman Rand", "Grace Lee Whitney"]));
+          }
+          if (key === "Gary Seven") {
+            card.appendChild(metaBlock(["Gary Seven", "Gary Seven", "Robert Lansing"]));
+          }
+          if (key === "Sarek") {
+            card.appendChild(metaBlock(["Sarek", "Sarek", "Mark Lenard"]));
+          }
+          gallery.appendChild(card);
+        });
+        gallery.dataset.ready = "1";
+      }
+
+      function buildOthers() {
+        const ids = [
+          "gallery-tng",
+          "gallery-ds9",
+          "gallery-voyager",
+          "gallery-enterprise",
+          "gallery-lower-decks",
+          "gallery-prodigy",
+          "gallery-tas",
+          "gallery-picard",
+          "gallery-discovery"
+        ];
+        ids.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el && el.dataset.ready !== "1") {
+            placeholderCards(el, 6);
+            el.dataset.ready = "1";
+          }
+        });
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        buildTOS();
+        buildOthers();
+      });
+    </script>
+  </body>
+</html>
