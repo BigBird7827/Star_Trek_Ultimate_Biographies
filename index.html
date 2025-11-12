@@ -375,6 +375,28 @@
   , "Deanna Troi"
 ];
 
+      const IMG_URLS_ENTERPRISE = {
+  "Jonathan Archer": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Archer.png"
+  , "Charles Tucker III": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Trip%20Tucker.png"
+  , "T'Pol": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/TPol.png"
+};
+      const ORDER_ENTERPRISE = [
+  "Jonathan Archer"
+  , "Charles Tucker III"
+  , "T'Pol"
+];
+
+      const IMG_URLS_TAS = {
+  "James T. Kirk": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/James%20T%20Kirk%20(TAS).png"
+  , "Spock": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Spock%20(TAS).png"
+  , "Leonard McCoy": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Doctor%20McCoy%20(TAS).png"
+};
+      const ORDER_TAS = [
+  "James T. Kirk"
+  , "Spock"
+  , "Leonard McCoy"
+];
+
       const VIEWS = [
         "menu",
         "tos",
@@ -428,22 +450,23 @@
 		"Hikaru Sulu": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Sulu.png",
 		"Trelane": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Trelane.png",
 		"Balok": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Balok.png"};
-      const IMG_URLS_TAS = {
-  "James T. Kirk": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/James%20T%20Kirk%20(TAS).png"
-  , "Spock": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Spock%20(TAS).png"
-  , "Leonard McCoy": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Doctor%20McCoy%20(TAS).png"
-};
-      const ORDER_TAS = [
-  "James T. Kirk"
-  , "Spock"
-  , "Leonard McCoy"
-];
-    
       const IMG_URLS_TNG = {
         "Jean-Luc Picard": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Picard.png",
         "William Riker": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Riker.png",
         "Data": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Data.png"
       };
+      const IMG_URLS_DISCOVERY = {
+  "Michael Burnham": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Burnham.png"
+  , "Saru": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Saru.png"
+  , "Gabriel Lorca": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Lorca.png"
+};
+      const ORDER_DISCOVERY = [
+        "Michael Burnham",
+        "Saru",
+        "Gabriel Lorca"
+      ];
+    
+
       const ORDER_TNG = [
         "Jean-Luc Picard",
         "William Riker",
@@ -621,6 +644,40 @@ const ORDER_VOYAGER = [
 
 
       
+function buildDISCOVERY() {
+  const gallery = document.getElementById("gallery-discovery");
+  if (!gallery || gallery.dataset.ready === "1") return;
+  (ORDER_DISCOVERY || []).forEach((key) => {
+    const src = (IMG_URLS_DISCOVERY || {})[key];
+    const card = document.createElement("div");
+    card.className = "card";
+    const media = document.createElement("div");
+    media.className = "media";
+    if (src) {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "";
+      media.appendChild(img);
+    } else {
+      const ph = document.createElement("div");
+      ph.className = "ph";
+      media.appendChild(ph);
+    }
+    card.appendChild(media);
+
+    if (key === "Michael Burnham") {
+      card.appendChild(metaBlock(["Michael Burnham", "Captain Burnham", "Sonequa Martin-Green"]));
+    } else if (key === "Saru") {
+      card.appendChild(metaBlock(["Saru", "Captain Saru", "Doug Jones"]));
+    } else if (key === "Gabriel Lorca") {
+      card.appendChild(metaBlock(["Gabriel Lorca", "Captain Lorca", "Jason Isaacs"]));
+    }
+
+    gallery.appendChild(card);
+  });
+  gallery.dataset.ready = "1";
+}
+
 function buildTAS() {
   const gallery = document.getElementById("gallery-tas");
   if (!gallery || gallery.dataset.ready === "1") return;
@@ -641,7 +698,6 @@ function buildTAS() {
       media.appendChild(ph);
     }
     card.appendChild(media);
-
     if (key === "James T. Kirk") {
       card.appendChild(metaBlock(["James T. Kirk", "Captain Kirk", "William Shatner"]));
     } else if (key === "Spock") {
@@ -649,7 +705,38 @@ function buildTAS() {
     } else if (key === "Leonard McCoy") {
       card.appendChild(metaBlock(["Leonard McCoy", "Dr. (Bones) McCoy", "DeForest Kelley"]));
     }
+    gallery.appendChild(card);
+  });
+  gallery.dataset.ready = "1";
+}
 
+function buildENTERPRISE() {
+  const gallery = document.getElementById("gallery-enterprise");
+  if (!gallery || gallery.dataset.ready === "1") return;
+  (ORDER_ENTERPRISE || []).forEach((key) => {
+    const src = (IMG_URLS_ENTERPRISE || {})[key];
+    const card = document.createElement("div");
+    card.className = "card";
+    const media = document.createElement("div");
+    media.className = "media";
+    if (src) {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "";
+      media.appendChild(img);
+    } else {
+      const ph = document.createElement("div");
+      ph.className = "ph";
+      media.appendChild(ph);
+    }
+    card.appendChild(media);
+    if (key === "Jonathan Archer") {
+      card.appendChild(metaBlock(["Jonathan Archer", "Captain Archer", "Scott Bakula"]));
+    } else if (key === "Charles Tucker III") {
+      card.appendChild(metaBlock(["Charles Tucker III", "Commander (Trip) Tucker", "Connor Trinneer"]));
+    } else if (key === "T'Pol") {
+      card.appendChild(metaBlock(["T'Pol", "Sub-Commander T'Pol", "Jolene Blalock"]));
+    }
     gallery.appendChild(card);
   });
   gallery.dataset.ready = "1";
@@ -675,7 +762,6 @@ function buildPICARD() {
       media.appendChild(ph);
     }
     card.appendChild(media);
-
     if (key === "Jean-Luc Picard") {
       card.appendChild(metaBlock(["Jean-Luc Picard", "Admiral Picard", "Patrick Stewart"]));
     } else if (key === "William Riker") {
@@ -683,7 +769,6 @@ function buildPICARD() {
     } else if (key === "Deanna Troi") {
       card.appendChild(metaBlock(["Deanna Troi", "Troi", "Marina Sirtis"]));
     }
-
     gallery.appendChild(card);
   });
   gallery.dataset.ready = "1";
@@ -693,7 +778,6 @@ function buildOthers() {
           "gallery-tng",
           "gallery-ds9",
           "gallery-voyager",
-          "gallery-enterprise",
           "gallery-lower-decks",
           "gallery-prodigy",
           "gallery-discovery"
@@ -714,6 +798,8 @@ function buildOthers() {
         buildVoyager();
         buildTAS();
         buildPICARD();
+        buildENTERPRISE();
+        buildDISCOVERY();
         buildOthers();
       });
     
