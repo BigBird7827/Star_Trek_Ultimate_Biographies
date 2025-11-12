@@ -397,7 +397,19 @@
   , "Leonard McCoy"
 ];
 
-      const VIEWS = [
+      
+      const IMG_URLS_LOWER_DECKS = {
+  "Carol Freeman": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Carol%20Freeman.png"
+  , "Jack Ransom": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Jack%20Ransom.png"
+  , "T'Ana": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/TAna.png"
+};
+      const ORDER_LOWER_DECKS = [
+  "Carol Freeman"
+  , "Jack Ransom"
+  , "T'Ana"
+];
+
+const VIEWS = [
         "menu",
         "tos",
         "tng",
@@ -773,6 +785,41 @@ function buildPICARD() {
   });
   gallery.dataset.ready = "1";
 }
+
+function buildLOWER_DECKS() {
+  const gallery = document.getElementById("gallery-lower-decks");
+  if (!gallery || gallery.dataset.ready === "1") return;
+  (ORDER_LOWER_DECKS || []).forEach((key) => {
+    const src = (IMG_URLS_LOWER_DECKS || {})[key];
+    const card = document.createElement("div");
+    card.className = "card";
+    const media = document.createElement("div");
+    media.className = "media";
+    if (src) {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "";
+      media.appendChild(img);
+    } else {
+      const ph = document.createElement("div");
+      ph.className = "ph";
+      media.appendChild(ph);
+    }
+    card.appendChild(media);
+
+    if (key === "Carol Freeman") {
+      card.appendChild(metaBlock(["Carol Freeman", "Captain Freeman", "Dawnn Lewis"]));
+    } else if (key === "Jack Ransom") {
+      card.appendChild(metaBlock(["Jack Ransom", "Commander Ransom", "Jerry O'Connell"]));
+    } else if (key === "T'Ana") {
+      card.appendChild(metaBlock(["T'Ana", "Doctor T'Ana", "Gillian Vigman"]));
+    }
+
+    gallery.appendChild(card);
+  });
+  gallery.dataset.ready = "1";
+}
+
 function buildOthers() {
         const ids = [
           "gallery-tng",
@@ -800,6 +847,7 @@ function buildOthers() {
         buildPICARD();
         buildENTERPRISE();
         buildDISCOVERY();
+        buildLOWER_DECKS();
         buildOthers();
       });
     
