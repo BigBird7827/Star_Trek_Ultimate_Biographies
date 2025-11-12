@@ -273,7 +273,7 @@
           <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
-          <h2 class="subtitle">Star Trek – TOS</h2>
+          <h2 class="subtitle">Star Trek – The Original Series</h2>
           <div id="gallery-tos" class="gallery"></div>
         </section>
 
@@ -281,7 +281,7 @@
           <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
-          <h2 class="subtitle">Star Trek – TNG</h2>
+          <h2 class="subtitle">Star Trek – The Next Generation</h2>
           <div id="gallery-tng" class="gallery"></div>
         </section>
 
@@ -289,7 +289,7 @@
           <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
-          <h2 class="subtitle">Star Trek – DS9</h2>
+          <h2 class="subtitle">Star Trek – Deep Space Nine</h2>
           <div id="gallery-ds9" class="gallery"></div>
         </section>
 
@@ -329,7 +329,7 @@
           <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
-          <h2 class="subtitle">Star Trek – TAS</h2>
+          <h2 class="subtitle">Star Trek – The Animated Series</h2>
           <div id="gallery-tas" class="gallery"></div>
         </section>
 
@@ -399,28 +399,38 @@
         "Yeoman Rand": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Yeoman%20Rand.png",
         "Gary Seven": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Gary%20Seven.png",
         "Sarek": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/Sarek.png",
-        "Khan Noonien Singh": "",
-        "Harry Mudd": "",
+        "Khan Noonien Singh": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Khan.png",
+        "Harry Mudd": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Harry%20Mudd.png",
         "Commodore Matt Decker": "",
-        "Edith Keeler": ""
+        "Edith Keeler": "",
+		"Hikaru Sulu": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Sulu.png",
+		"Trelane": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Trelane.png",
+		"Balok": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Balok.png"};
+      const IMG_URLS_TNG = {
+        "Jean-Luc Picard": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Picard.png",
+        "William Riker": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Riker.png",
+        "Data": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Data.png"
       };
-
-      const ORDER_TOS = [
-        "James T. Kirk",
-        "Spock",
-        "Doctor McCoy",
-        "Scotty",
-        "Chekov",
-        "Uhura",
-        "Nurse Chapel",
-        "Yeoman Rand",
-        "Gary Seven",
-        "Sarek",
-        "Khan Noonien Singh",
-        "Harry Mudd",
-        "Commodore Matt Decker",
-        "Edith Keeler"
+      const ORDER_TNG = [
+        "Jean-Luc Picard",
+        "William Riker",
+        "Data"
       ];
+
+const IMG_URLS_DS9 = {
+		"Benjamin Sisko": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Sisko.png",
+		"Kira Nerys": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Kira.png",
+		"Worf": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Images/Worf%20DS9.png"
+};
+const ORDER_DS9 = [
+  "Benjamin Sisko",
+  "Kira Nerys",
+  "Worf"
+];
+
+
+
+      const ORDER_TOS = ["James T. Kirk", "Spock", "Doctor McCoy", "Scotty", "Hikaru Sulu", "Chekov", "Uhura", "Nurse Chapel", "Yeoman Rand", "Gary Seven", "Sarek", "Khan Noonien Singh", "Trelane", "Harry Mudd", "Balok"];
 
       function metaBlock(lines) {
         const meta = document.createElement("div");
@@ -506,9 +516,64 @@
             card.appendChild(metaBlock(["Sarek", "Sarek", "Mark Lenard"]));
           }
           gallery.appendChild(card);
+
+          if (key === "Hikaru Sulu") {
+            card.appendChild(metaBlock(["Sulu", "Hikaru Sulu", "George Takei"]));
+          }
+
+          if (key === "Khan Noonien Singh") {
+            card.appendChild(metaBlock(["Khan Noonien Singh", "Khan", "Ricardo Montalban"]));
+          }
+
+          if (key === "Trelane") {
+            card.appendChild(metaBlock(["Trelane", "Trelane", "William Campbell"]));
+          }
+
+          if (key === "Harry Mudd") {
+            card.appendChild(metaBlock(["Harry Mudd", "Harcourt Fenton Mudd", "Roger C. Carmel"]));
+          }
+
+          if (key === "Balok") {
+            card.appendChild(metaBlock(["Balok", "Balok", "Clint Howard"]));
+          }
+});
+        gallery.dataset.ready = "1";
+      }
+      function buildTNG() {
+        const gallery = document.getElementById("gallery-tng");
+        if (!gallery || gallery.dataset.ready === "1") return;
+        ORDER_TNG.forEach((key) => {
+          const src = IMG_URLS_TNG[key];
+          const card = document.createElement("div");
+          card.className = "card";
+          const media = document.createElement("div");
+          media.className = "media";
+          if (src) {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = "";
+            media.appendChild(img);
+          } else {
+            const ph = document.createElement("div");
+            ph.className = "ph";
+            ph.style.background = "linear-gradient(135deg,#1b2e57,#102c4d)";
+            media.appendChild(ph);
+          }
+          card.appendChild(media);
+          if (key === "Jean-Luc Picard") {
+            card.appendChild(metaBlock(["Jean-Luc Picard", "Captain", "Patrick Stewart"]));
+          }
+          if (key === "William Riker") {
+            card.appendChild(metaBlock(["William Riker", "Commander Riker", "Jonathan Frakes"]));
+          }
+          if (key === "Data") {
+            card.appendChild(metaBlock(["Data", "Lt. Commander Data", "Brent Spiner"]));
+          }
+          gallery.appendChild(card);
         });
         gallery.dataset.ready = "1";
       }
+
 
       function buildOthers() {
         const ids = [
@@ -533,8 +598,46 @@
 
       window.addEventListener("DOMContentLoaded", () => {
         buildTOS();
+        buildTNG();
+        buildDS9();
         buildOthers();
       });
-    </script>
+    
+
+function buildDS9() {
+  const gallery = document.getElementById("gallery-ds9");
+  if (!gallery || gallery.dataset.ready === "1") return;
+  ORDER_DS9.forEach((key) => {
+    const src = IMG_URLS_DS9[key];
+    const card = document.createElement("div");
+    card.className = "card";
+    const media = document.createElement("div");
+    media.className = "media";
+    if (src) {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "";
+      media.appendChild(img);
+    } else {
+      const ph = document.createElement("div");
+      ph.className = "ph";
+      media.appendChild(ph);
+    }
+    card.appendChild(media);
+
+    if (key === "Benjamin Sisko") {
+      card.appendChild(metaBlock(["Benjamin Sisko", "Captain Sisko", "Avery Brooks"]));
+    } else if (key === "Kira Nerys") {
+      card.appendChild(metaBlock(["Kira Nerys", "Major Kira", "Nana Visitor"]));
+    } else if (key === "Worf") {
+      card.appendChild(metaBlock(["Worf", "Lt. Commander Worf", "Michael Dorn"]));
+    }
+
+    gallery.appendChild(card);
+  });
+  gallery.dataset.ready = "1";
+}
+
+</script>
   </body>
 </html>
