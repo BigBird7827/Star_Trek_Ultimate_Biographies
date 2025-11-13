@@ -37,7 +37,7 @@
       footer {
         padding: 24px clamp(16px, 3vw, 48px);
       }
-      h1{margin:0;text-align:center;font-family:"Orbitron",system-ui,sans-serif;font-weight:800;font-size:56pt;line-height:1;background:linear-gradient(180deg,#f7f9fb 0%,#dfe3e8 25%,#b7bcc3 50%,#eff1f4 60%,#8d9299 75%,#f7f9fb 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px #000;}
+      h1{margin:0;text-align:center;font-family:"Orbitron",system-ui,sans-serif;font-weight:800;font-size:56pt;line-height:1;background:linear-gradient(180deg,#fff4c1 0%,#ffe38a 25%,#ffd700 50%,#fff2a8 60%,#e0b900 75%,#fff4c1 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:1px #000;}
       main {
         flex: 1;
         display: flex;
@@ -224,6 +224,68 @@
       .meta .actor {
         opacity: 0.9;
       }
+      .meta .line {
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+      }
+      .meta .name,
+      .meta .actor {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      .bio-content {
+        max-width: 800px;
+        margin: 45px auto 32px;
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      .bio-content p + p {
+        margin-top: 1em;
+      }
+      .bio-section-header {
+        font-size: 18px;
+        color: #ffd700;
+        font-weight: 700;
+        margin: 1.5em auto 0.3em;
+        max-width: 800px;
+      }
+      .series-header {
+        position: sticky;
+        top: 0;
+        z-index: 18;
+        padding: 12px 16px 8px;
+        background: #000000;
+      }
+      #bio .bio-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        padding: 12px 16px 8px;
+        background: #000000;
+      }
+      #bio .subtitle {
+        font-size: 30px;
+        color: #ffd700;
+      }
+      #bio-title {
+        color: #ffd700;
+      }
+      #bio {
+        position: relative;
+        background-attachment: fixed;
+        background-image:
+          radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.16) 0, transparent 55%),
+          radial-gradient(circle at 80% 30%, rgba(120, 200, 255, 0.16) 0, transparent 55%),
+          linear-gradient(180deg, #020412 0%, #020818 35%, #030b20 70%, #02030a 100%);
+        background-size: cover;
+        background-position: center top;
+      }
+      #bio .bio-content {
+        position: relative;
+        z-index: 1;
+      }
       footer {
         margin-top: auto;
         text-align: center;
@@ -271,96 +333,129 @@
         </section>
 
         <section id="tos" class="view">
-          <div class="topbar">
+          <div class="series-header">
+            <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
           <h2 class="subtitle">Star Trek – The Original Series</h2>
+          </div>
           <div id="gallery-tos" class="gallery"></div>
         </section>
 
         <section id="tng" class="view">
-          <div class="topbar">
+          <div class="series-header">
+            <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
           <h2 class="subtitle">Star Trek – The Next Generation</h2>
+          </div>
           <div id="gallery-tng" class="gallery"></div>
         </section>
 
         <section id="ds9" class="view">
-          <div class="topbar">
+          <div class="series-header">
+            <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
           <h2 class="subtitle">Star Trek – Deep Space Nine</h2>
+          </div>
           <div id="gallery-ds9" class="gallery"></div>
         </section>
 
 <section id="snw" class="view">
-  <div class="topbar">
+  <div class="series-header">
+            <div class="topbar">
     <a href="#menu">Back to Series Menu</a>
   </div>
   <h2 class="subtitle">Star Trek – Strange New Worlds</h2>
+          </div>
   <div id="gallery-snw" class="gallery"></div>
 </section>
 
 
         <section id="voyager" class="view">
-          <div class="topbar">
+          <div class="series-header">
+            <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
           <h2 class="subtitle">Star Trek – Voyager</h2>
+          </div>
           <div id="gallery-voyager" class="gallery"></div>
         </section>
 
         <section id="enterprise" class="view">
-          <div class="topbar">
+          <div class="series-header">
+            <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
           <h2 class="subtitle">Star Trek – Enterprise</h2>
+          </div>
           <div id="gallery-enterprise" class="gallery"></div>
         </section>
 
         <section id="lower-decks" class="view">
-          <div class="topbar">
+          <div class="series-header">
+            <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
           <h2 class="subtitle">Star Trek – Lower Decks</h2>
+          </div>
           <div id="gallery-lower-decks" class="gallery"></div>
         </section>
 
         <section id="prodigy" class="view">
-          <div class="topbar">
+          <div class="series-header">
+            <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
           <h2 class="subtitle">Star Trek – Prodigy</h2>
+          </div>
           <div id="gallery-prodigy" class="gallery"></div>
         </section>
 
         <section id="tas" class="view">
-          <div class="topbar">
+          <div class="series-header">
+            <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
           <h2 class="subtitle">Star Trek – The Animated Series</h2>
+          </div>
           <div id="gallery-tas" class="gallery"></div>
         </section>
 
         <section id="picard" class="view">
-          <div class="topbar">
+          <div class="series-header">
+            <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
           <h2 class="subtitle">Star Trek – Picard</h2>
+          </div>
           <div id="gallery-picard" class="gallery"></div>
         </section>
 
         <section id="discovery" class="view">
-          <div class="topbar">
+          <div class="series-header">
+            <div class="topbar">
             <a href="#menu">Back to Series Menu</a>
           </div>
           <h2 class="subtitle">Star Trek – Discovery</h2>
+          </div>
           <div id="gallery-discovery" class="gallery"></div>
+        </section>
+
+        <section id="bio" class="view">
+          <div class="bio-header">
+            <div class="topbar">
+              <a href="#menu">Back to Series Menu</a>
+              <a href="#" id="return-card-link">Return to Series Page</a>
+            </div>
+            <h2 class="subtitle" id="bio-title"></h2>
+          </div>
+          <div id="bio-content" class="bio-content"></div>
         </section>
       </main>
 
-      <footer>© 2025 Star Trek Fan Art</footer>
+      <footer>© 2025 Star Trek Ultimate Biographies</footer>
     </div>
 
     <script>
@@ -376,7 +471,8 @@
         "tas",
         "picard",
         "discovery",
-        "snw"
+        "snw",
+        "bio"
       ];
 
       function showView(id) {
@@ -397,6 +493,120 @@
 
       window.addEventListener("hashchange", handleHash);
       window.addEventListener("DOMContentLoaded", handleHash);
+
+      const BIOS_URL = "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Ultimate_Biographies/main/Biographies/Bios.json";
+      let BIOS_DATA = null;
+      let BIOS_READY = false;
+      let BIO_RETURN_HASH = "#menu";
+      let BIO_RETURN_SCROLL = 0;
+
+      function loadBios() {
+        if (BIOS_READY) {
+          return Promise.resolve(BIOS_DATA);
+        }
+        return fetch(BIOS_URL)
+          .then(function (res) {
+            if (!res.ok) {
+              throw new Error("Failed to load bios");
+            }
+            return res.json();
+          })
+          .then(function (data) {
+            BIOS_DATA = data;
+            BIOS_READY = true;
+            return BIOS_DATA;
+          })
+          .catch(function (err) {
+            console.error("[Bios] Load error", err);
+            BIOS_DATA = null;
+            BIOS_READY = true;
+            return null;
+          });
+      }
+
+      function getSeriesLabelFromHash(hash) {
+        if (!hash || hash === "#menu") {
+          return "Series";
+        }
+        const id = hash.charAt(0) === "#" ? hash.slice(1) : hash;
+        const section = document.getElementById(id);
+        if (!section) {
+          return "Series";
+        }
+        const subtitle = section.querySelector(".subtitle");
+        if (!subtitle) {
+          return "Series";
+        }
+        const raw = subtitle.textContent || "";
+        const cleaned = raw.replace(/^Star Trek\s*[\u2013-]\s*/i, "").trim();
+        return cleaned || "Series";
+      }
+
+      function openBio(kind, key) {
+        BIO_RETURN_HASH = location.hash || "#menu";
+        BIO_RETURN_SCROLL = window.scrollY || document.documentElement.scrollTop || 0;
+        const link = document.getElementById("return-card-link");
+        if (link) {
+          const label = getSeriesLabelFromHash(BIO_RETURN_HASH);
+          link.textContent = "Return to " + label + " Page";
+        }
+        loadBios().then(function (data) {
+          if (!data) return;
+          const source = kind === "actor" ? data.actors : data.characters;
+          if (!source) return;
+          const entry = source[key];
+          const titleEl = document.getElementById("bio-title");
+          const bodyEl = document.getElementById("bio-content");
+          if (!titleEl || !bodyEl) return;
+          titleEl.textContent = key;
+          bodyEl.innerHTML = "";
+          const text = entry && entry.bio ? entry.bio : "Biography not available.";
+          const parts = text.split(/\n\s*\n/);
+          parts.forEach(function (part) {
+            const trimmed = part.trim();
+            if (!trimmed) {
+              return;
+            }
+            let node;
+            if (!/[.!?]/.test(trimmed) && trimmed.length < 80) {
+              node = document.createElement("h3");
+              node.className = "bio-section-header";
+              node.textContent = trimmed;
+            } else {
+              node = document.createElement("p");
+              node.textContent = trimmed.replace(/\n/g, " ");
+            }
+            bodyEl.appendChild(node);
+          });
+          location.hash = "#bio";
+        });
+      }
+
+      function returnToCard() {
+        if (!BIO_RETURN_HASH) {
+          BIO_RETURN_HASH = "#menu";
+        }
+        const targetHash = BIO_RETURN_HASH;
+        const targetScroll = BIO_RETURN_SCROLL || 0;
+        if (location.hash === targetHash) {
+          window.scrollTo(0, targetScroll);
+        } else {
+          window.location.hash = targetHash;
+          setTimeout(function () {
+            window.scrollTo(0, targetScroll);
+          }, 0);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const link = document.getElementById("return-card-link");
+        if (link) {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            returnToCard();
+          });
+        }
+      });
 
       const IMG_URLS_TOS = {
         "James T. Kirk": "https://raw.githubusercontent.com/BigBird7827/Star_Trek_Fan_Art/main/Images/James%20T%20Kirk.png",
@@ -526,16 +736,26 @@ const ORDER_VOYAGER = [
       function metaBlock(lines) {
         const meta = document.createElement("div");
         meta.className = "meta";
-        const [name, role, actor] = lines;
-        const l1 = document.createElement("div");
+        const name = lines[0];
+        const role = lines[1];
+        const actor = lines[2];
+        const l1 = document.createElement("button");
+        l1.type = "button";
         l1.className = "line name";
         l1.textContent = name;
+        l1.addEventListener("click", function () {
+          openBio("character", name);
+        });
         const l2 = document.createElement("div");
         l2.className = "line role";
         l2.textContent = role;
-        const l3 = document.createElement("div");
+        const l3 = document.createElement("button");
+        l3.type = "button";
         l3.className = "line actor";
         l3.textContent = actor;
+        l3.addEventListener("click", function () {
+          openBio("actor", actor);
+        });
         meta.appendChild(l1);
         meta.appendChild(l2);
         meta.appendChild(l3);
